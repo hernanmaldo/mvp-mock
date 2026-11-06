@@ -28,7 +28,7 @@ export function Layout() {
       {/* Navegación lateral persistente */}
       <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-line bg-white md:flex">
         <div className="flex h-14 items-center gap-2 border-b border-line px-4">
-          <img src="/favicon.svg" alt="Tecnowatt" className="h-7 w-7" />
+          <img src="/mvp-mock/favicon.svg" alt="Tecnowatt" className="h-7 w-7" />
           <div className="leading-tight">
             <div className="text-sm font-semibold text-ink">Cotizaciones</div>
             <div className="text-2xs font-medium uppercase tracking-wider text-ink-muted">MVP</div>
@@ -76,10 +76,10 @@ export function Layout() {
         {/* Encabezado compacto */}
         <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b border-line bg-white/95 px-4 backdrop-blur md:px-6">
           <div className="flex items-center gap-2 md:hidden">
-            <img src="/favicon.svg" alt="Tecnowatt" className="h-6 w-6" />
+            <img src="/mvp-mock/favicon.svg" alt="Tecnowatt" className="h-6 w-6" />
             <span className="text-sm font-semibold">Cotizaciones · MVP</span>
           </div>
-          <img src="/logo.svg" alt="Tecnowatt" className="hidden h-6 md:block" />
+          <img src="/mvp-mock/logo.svg" alt="Tecnowatt" className="hidden h-6 md:block" />
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 rounded-full border border-warning-border bg-warning-bg px-2.5 py-1 text-2xs font-semibold text-warning-fg">
               <FlaskConical size={12} />

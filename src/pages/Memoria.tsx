@@ -308,7 +308,7 @@ function MemoriaPreview({
         <article className="mx-auto max-w-[640px] space-y-5 bg-white p-8 shadow-raised">
           {/* Portada */}
           <header className="border-b border-line pb-5 text-center">
-            {memoria.logo && <img src="/logo.svg" alt="Tecnowatt" className="mx-auto mb-4 h-7" />}
+            {memoria.logo && <img src="/mvp-mock/logo.svg" alt="Tecnowatt" className="mx-auto mb-4 h-7" />}
             <h2 className="text-lg font-semibold text-ink">{memoria.titulo}</h2>
             <p className="mt-1 text-xs text-ink-muted">{memoria.encabezado}</p>
             <p className="mt-3 text-sm text-ink-subtle">{projectName}</p>

@@ -7,7 +7,7 @@ import { DemoProvider } from './store/DemoContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/mvp-mock">
       <DemoProvider>
         <App />
       </DemoProvider>
