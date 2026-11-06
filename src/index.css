@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    @apply bg-surface-sunken text-ink font-sans text-sm;
+  }
+  * {
+    @apply border-line;
+  }
+}
+
+@layer components {
+  /* Focus ring consistent with Atlassian */
+  .focus-ring {
+    @apply outline-none ring-2 ring-brand-300 ring-offset-1;
+  }
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slidein {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Thin, unobtrusive scrollbars for table overflow areas */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #C1C7D0 transparent;
+}
+.scroll-thin::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+.scroll-thin::-webkit-scrollbar-thumb {
+  background-color: #C1C7D0;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.scroll-thin::-webkit-scrollbar-track {
+  background: transparent;
+}

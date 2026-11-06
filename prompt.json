@@ -1,0 +1,715 @@
+{
+  "objetivo": "Crear un mockup navegable de un MVP para asistir la lectura de pliegos, la elaboración de itemizados y memorias descriptivas, y la administración de una base de conocimiento. Se utilizará en una reunión para debatir funcionalidades. Entregar el proyecto frontend completo, no solamente una descripción del diseño.",
+  "idioma": "Español de Argentina",
+  "stack": {
+    "framework": "React",
+    "lenguaje": "TypeScript",
+    "estilos": "Tailwind CSS",
+    "build": "Vite",
+    "navegacion": "React Router",
+    "iconos": "Lucide React",
+    "estado": "Estado React en memoria"
+  },
+  "principio_fundamental": {
+    "tipo": "Prototipo visual interactivo",
+    "instrucciones": [
+      "Implementar navegación, pestañas, formularios, diálogos, paneles laterales, filtros y cambios de etapa.",
+      "Utilizar datos y resultados predefinidos.",
+      "Las acciones pueden cambiar estados visuales y revelar escenarios preparados, pero no deben implementar procesamiento ni transformaciones reales de datos de negocio.",
+      "No implementar backend, autenticación, base de datos, IA, OCR, búsqueda web, integraciones ni llamadas a APIs.",
+      "No implementar lectura o escritura real de Excel, generación de Word ni descargas reales.",
+      "La selección de archivos solamente muestra su nombre y habilita la siguiente etapa simulada.",
+      "No usar localStorage, sessionStorage, IndexedDB ni persistencia remota.",
+      "Mantener el estado de navegación y progreso mientras la aplicación esté abierta.",
+      "Al recargar o reiniciar, restaurar el estado inicial.",
+      "Mostrar una etiqueta discreta y permanente: 'Demo con datos simulados'.",
+      "No afirmar que un archivo fue procesado, descargado o enviado realmente."
+    ]
+  },
+  "alcance": {
+    "incluido": [
+      "Módulo 1: lectura asistida de pliegos y revisión de detecciones.",
+      "Módulo 2: itemizado, Excel y memoria descriptiva con datos garantizados.",
+      "Módulo 3: base de conocimiento con pantallas de ABM.",
+      "Listado de proyectos como punto de acceso.",
+      "Botón visual Enviar a Ingeniería."
+    ],
+    "excluido": [
+      "Funciones de trabajo de Ingeniería.",
+      "Portal integral de todas las áreas.",
+      "Gestión de compras, stock o almacén.",
+      "Comparación automática de proveedores.",
+      "Extracción de AutoCAD.",
+      "Validación cruzada entre pliego, AutoCAD y cotización.",
+      "Cronogramas.",
+      "Roles, permisos y autenticación.",
+      "Resaltado de detecciones dentro del PDF.",
+      "Sincronización bidireccional entre detecciones e itemizado."
+    ]
+  },
+  "diseno": {
+    "referencia": "Estilo Atlassian Design System, sin necesidad de utilizar sus paquetes.",
+    "caracteristicas": [
+      "Diseño empresarial minimalista, funcional y orientado a productividad.",
+      "Tema claro, fondo gris muy suave y superficies blancas.",
+      "Azul como color principal de acciones y navegación.",
+      "Navegación lateral persistente y encabezado compacto.",
+      "Tablas organizadas, formularios simples y estados claramente identificados.",
+      "Tipografía sans serif legible.",
+      "Bordes sutiles, sombras mínimas y espaciado consistente.",
+      "Evitar gradientes decorativos, grandes tarjetas vacías y apariencia de landing comercial.",
+      "Priorizar escritorio de 1440 por 900 y mantener usabilidad en 1280 por 720.",
+      "Permitir desplazamiento horizontal en tablas extensas.",
+      "Usar texto e iconos además del color para comunicar estados."
+    ],
+    "nombre_aplicacion": "Cotizaciones | MVP",
+    "navegacion_principal": [
+      "Proyectos",
+      "Base de conocimiento"
+    ],
+    "acciones_globales": [
+      "Reiniciar demo"
+    ]
+  },
+  "proyecto_inicial": {
+    "cantidad": 1,
+    "creacion": "No implementar creación de proyectos. El proyecto ya existe y se puede ingresar en él.",
+    "datos": {
+      "id": "PR-001",
+      "nombre": "Acueducto San Javier · Etapa Tostado–Villa Minetti",
+      "cliente_organismo": "Por definir",
+      "tipo": "Público",
+      "alcance_a_cotizar": "Alcance parcial a seleccionar por rangos y secciones",
+      "responsable": "Equipo de Cotizaciones",
+      "fecha_limite": null,
+      "estado": "Pendiente de procesamiento"
+    },
+    "documentos": {
+      "pliego": "Pliego-Acu-SanJavier-EtapaTostado-VillaMinetti-v3.pdf",
+      "excel_referencia": "MATERIALES Y GASTOS ILUMINACIÓN EXTERIOR COOP GANADERA.XLSX",
+      "memoria_referencia": "MEMORIA DESCRIPTIVA PLANTA DE TRATAMIENTO CONCEPCIÓN DEL URUGUAY-REV1.pdf",
+      "regla": "El pliego es la entrada. El Excel y la memoria son referencias independientes de estructura y contenido para la demostración. No atribuir sus materiales o especificaciones al pliego."
+    }
+  },
+  "pantallas": {
+    "lista_proyectos": {
+      "contenido": [
+        "Tabla con el único proyecto precargado.",
+        "Columnas: proyecto, cliente/organismo, tipo, responsable, fecha límite, estado y acciones.",
+        "Acceso al proyecto.",
+        "Accesos rápidos a documentos disponibles.",
+        "Botón Enviar a Ingeniería en la fila del proyecto."
+      ],
+      "enviar_a_ingenieria": [
+        "Mostrar solamente el botón.",
+        "No exigir documentos, memoria, validaciones ni estado previo.",
+        "No abrir un flujo de envío, no enviar información y no cambiar el estado del proyecto.",
+        "Si se necesita feedback al pulsarlo, mostrar únicamente 'Acción fuera del alcance de esta demo'."
+      ]
+    },
+    "inicio_proyecto": {
+      "contenido": [
+        "Breadcrumb hacia Proyectos.",
+        "Datos generales del proyecto.",
+        "Accesos rápidos al pliego y a las salidas simuladas disponibles.",
+        "Lista de procesamientos de la sesión.",
+        "Botón Nuevo procesamiento."
+      ],
+      "lista_procesamientos": {
+        "columnas": [
+          "Identificador",
+          "Fecha y hora",
+          "Rangos seleccionados",
+          "Secciones incluidas",
+          "Etapa",
+          "Alertas pendientes",
+          "Acción Abrir"
+        ],
+        "reglas": [
+          "Cada procesamiento es independiente.",
+          "Crear una nueva ejecución visual sin sobrescribir las anteriores.",
+          "Conservar el progreso visual de cada ejecución mientras dure la sesión.",
+          "Cada ejecución permite consultar las etapas ya recorridas."
+        ]
+      }
+    },
+    "nuevo_procesamiento": {
+      "entrada": "Un único PDF por proyecto.",
+      "controles": [
+        "Selector de PDF simulado y opción Usar pliego de demostración.",
+        "Editor de múltiples rangos con página desde y página hasta.",
+        "Agregar y quitar rangos.",
+        "Resumen de rangos seleccionados.",
+        "Botón Identificar secciones."
+      ],
+      "reglas": [
+        "Los rangos usan la posición de página del PDF.",
+        "Mostrar numeración impresa por separado solo cuando esté disponible.",
+        "No inventar una correspondencia entre numeración impresa y posición real.",
+        "Validar campos vacíos, números positivos y página inicial menor o igual a la final.",
+        "No procesar ni mostrar como analizadas páginas fuera de los rangos.",
+        "Los resultados son fixtures de demostración, no extracción real."
+      ]
+    },
+    "confirmacion_secciones": {
+      "orden": "Primera revisión, antes de las detecciones de piezas.",
+      "contenido": [
+        "Secciones identificadas dentro del alcance seleccionado.",
+        "Checkbox para incluir o excluir cada sección.",
+        "Título, breve descripción y páginas de referencia.",
+        "Resumen del alcance confirmado.",
+        "Botón Confirmar secciones y analizar."
+      ],
+      "reglas": [
+        "Exigir al menos una sección incluida.",
+        "Las secciones excluidas no aportan alertas ni ítems al escenario mostrado.",
+        "No mostrar resultados correspondientes a páginas fuera del alcance.",
+        "Usar ejemplos de equipamiento electromecánico, energía y automatismo como contexto del pliego.",
+        "Identificar las referencias de página no verificadas como simuladas."
+      ]
+    },
+    "revision_detecciones": {
+      "disposicion": "Panel de resultados con pestañas y visor documental lateral.",
+      "pestanas": [
+        "Resumen",
+        "Requisitos",
+        "Normas",
+        "Detecciones y alertas"
+      ],
+      "visor": [
+        "Visor documental simulado con página actual, anterior, siguiente y control de zoom visual.",
+        "Mostrar contenido representativo y señalar que es una vista de demostración.",
+        "Cada alerta tiene Ir a página y actualiza la página visible.",
+        "No dibujar marcas ni resaltados sobre el PDF.",
+        "Resaltar solamente el fragmento textual dentro de la tarjeta de detección."
+      ],
+      "detecciones": {
+        "origenes": [
+          "Texto",
+          "Tabla",
+          "Imagen o plano"
+        ],
+        "campos": [
+          "Identificador",
+          "Tipo de alerta",
+          "Sección",
+          "Página",
+          "Fragmento de origen o descripción visual",
+          "Descripción sugerida de la pieza",
+          "Cantidad, únicamente cuando se indique",
+          "Confianza simulada",
+          "Estado",
+          "Comentario opcional"
+        ],
+        "tipos": [
+          "Posible pieza",
+          "Cantidad no indicada",
+          "Posible referencia repetida",
+          "Posibles unidades adicionales",
+          "Ambigüedad técnica",
+          "Requisito especial"
+        ],
+        "acciones": [
+          "Confirmar",
+          "Corregir",
+          "Descartar",
+          "Agregar comentario",
+          "Ir a página"
+        ],
+        "reglas": [
+          "No mostrar coincidencias de catálogo en esta etapa.",
+          "Descartar resuelve la alerta y no incorpora ni modifica ítems.",
+          "La alerta de repetición permite representar la decisión entre referencia repetida y unidades adicionales.",
+          "No sumar automáticamente cantidades por apariciones repetidas.",
+          "Mostrar contador de alertas pendientes.",
+          "Bloquear el primer acceso al itemizado hasta resolver todas las alertas del alcance incluido.",
+          "Las decisiones y comentarios se representan en la trazabilidad visual."
+        ]
+      },
+      "nota_reunion": "Pendiente de definir en reunión: alcance exacto de piezas, conjuntos, tareas y servicios. Las tareas y servicios no se muestran como piezas detectadas.",
+      "avance": "Al resolver todas las alertas, habilitar Generar itemizado y mostrar el dataset preparado."
+    },
+    "itemizado": {
+      "naturaleza": "Edición determinista en el producto futuro; en este mock solo formularios y escenarios visuales predefinidos.",
+      "reglas": [
+        "Generar visualmente por primera vez después de resolver las alertas.",
+        "La edición del itemizado no modifica detecciones ni alertas.",
+        "No implementar propagación automática de cambios posteriores desde detecciones.",
+        "Permitir volver a consultar la detección original.",
+        "Mostrar un estado base que representa el resultado inicial de detecciones y alertas.",
+        "Los cambios manuales, importaciones y eliminaciones deben tener representación en el historial.",
+        "No implementar cálculos reales ni reconciliación de datos."
+      ],
+      "pestanas": [
+        "Materiales",
+        "M.O y resumen",
+        "Potencia",
+        "Descripciones auxiliares",
+        "Historial"
+      ],
+      "materiales": {
+        "organizacion": "Capítulos e intervenciones desplegables, siguiendo la organización del Excel.",
+        "campos": [
+          "Ítem",
+          "Cantidad",
+          "Unidad",
+          "Descripción",
+          "Código",
+          "Marca",
+          "Valor unitario",
+          "Importe",
+          "Subtotal por intervención",
+          "Total materiales"
+        ],
+        "acciones_visuales": [
+          "Agregar ítem",
+          "Editar ítem",
+          "Eliminar ítem",
+          "Mover de intervención",
+          "Agregar observación",
+          "Consultar origen"
+        ],
+        "precision": "Los nombres de valor unitario e importe son etiquetas de interfaz para los valores observados. Si se dispone del Excel original, respetar sus encabezados y disposición exactos."
+      },
+      "mano_obra_resumen": {
+        "grupos": [
+          "Resumen de costos",
+          "Mano de obra por intervención",
+          "Parámetros de cuadrilla y jornada",
+          "Horas extras normales",
+          "Horas extras de fin de semana",
+          "Costos asociados a los operarios",
+          "Costos asociados a la inspección",
+          "Costos asociados a la administración de obra",
+          "Proyecto eléctrico y planimetría",
+          "Programación y puesta en marcha",
+          "Alquiler de equipos"
+        ],
+        "campos_representativos": [
+          "Ítem",
+          "Cantidad",
+          "Unidad",
+          "Descripción",
+          "Valor hora",
+          "Importe",
+          "Paritaria",
+          "Presentismo",
+          "FDR",
+          "Dólar",
+          "Días en obra",
+          "Horas diarias",
+          "Personal asignado",
+          "Tiempo de viaje",
+          "Comidas",
+          "Kilómetros",
+          "Cantidad de viajes",
+          "Combustible",
+          "Valor del vehículo",
+          "Kilometraje esperado",
+          "Valor residual",
+          "Amortización",
+          "Hospedaje",
+          "Sueldos",
+          "Porcentaje de asignación",
+          "Totales"
+        ],
+        "regla": "No reducir toda esta información a una tarjeta de total. Organizarla en tablas y grupos expandibles."
+      },
+      "potencia": {
+        "columnas": [
+          "Ítem",
+          "Cantidad",
+          "Unidad",
+          "Descripción",
+          "Potencia HP",
+          "Potencia en W",
+          "Corriente (A) cos fi 0,85"
+        ],
+        "regla": "Conservar las etiquetas del archivo de referencia. No corregir unidades ni introducir cálculos técnicos en el mock."
+      },
+      "descripciones_auxiliares": {
+        "campos": [
+          "Material",
+          "Aplicación",
+          "Descripción combinada"
+        ],
+        "ejemplo": {
+          "material": "CABLE SUBT CU 3X 2.5MM2",
+          "aplicacion": "ALIMENTACIÓN CAUDALÍMETROS",
+          "descripcion_combinada": "CABLE SUBT CU 3X 2.5MM2 - ALIMENTACIÓN CAUDALÍMETROS"
+        }
+      },
+      "importacion_exportacion": {
+        "acciones": [
+          "Exportar Excel",
+          "Importar Excel"
+        ],
+        "reglas": [
+          "No importar Excel al inicio del procesamiento ni usarlo para crear el itemizado inicial.",
+          "La importación está disponible como acción del itemizado.",
+          "Mostrar confirmación: 'La importación reemplazará el itemizado actual. La operación quedará registrada y podrá deshacerse'.",
+          "Al confirmar, mostrar un escenario predefinido de itemizado importado.",
+          "Las eliminaciones se representan como modificaciones registradas, no como pérdida de trazabilidad.",
+          "No analizar el archivo seleccionado.",
+          "Exportar muestra feedback de exportación simulada, sin generar un archivo."
+        ]
+      },
+      "historial": {
+        "acciones": [
+          "Deshacer último cambio",
+          "Deshacer importación",
+          "Restablecer itemizado inicial"
+        ],
+        "columnas": [
+          "Fecha y hora",
+          "Acción",
+          "Elemento",
+          "Antes",
+          "Después",
+          "Comentario"
+        ],
+        "reglas": [
+          "Usar versiones visuales preparadas: inicial, modificación manual e importación.",
+          "Restablecer vuelve al itemizado base generado tras resolver alertas.",
+          "Restablecer no vuelve a procesar el pliego ni altera las detecciones.",
+          "Solicitar confirmación antes de restablecer."
+        ]
+      }
+    },
+    "memoria_descriptiva": {
+      "ubicacion": "Última etapa del flujo.",
+      "contenido": [
+        "Selector de plantilla.",
+        "Configuración de logo, títulos, encabezados, pies y secciones.",
+        "Resumen de datos disponibles y faltantes.",
+        "Botón Generar memoria descriptiva.",
+        "Vista previa documental de solo lectura.",
+        "Botón Descargar Word."
+      ],
+      "faltantes": {
+        "acciones": [
+          "Buscar en la web con IA",
+          "Completar en base de conocimiento",
+          "Continuar con faltantes"
+        ],
+        "reglas": [
+          "Nunca bloquear la generación por faltantes.",
+          "La búsqueda muestra resultados preparados y claramente simulados.",
+          "Permitir representar la aceptación de un resultado sin consultar internet.",
+          "No guardar automáticamente resultados web en la base.",
+          "El acceso al ABM abre el formulario correspondiente y permite regresar a la memoria.",
+          "La vista previa identifica los faltantes sin inventar características."
+        ]
+      },
+      "documento": {
+        "formato_previsto": "Word .docx, convertible posteriormente a PDF fuera del mock.",
+        "edicion": "No implementar editor de documentos.",
+        "referencia": "Usar la memoria adjunta como referencia de presentación y organización técnica.",
+        "secciones_representativas": [
+          "Portada",
+          "Introducción y alcance técnico",
+          "Normativa y base de diseño",
+          "Descripción de envolventes",
+          "Descripción de unidades funcionales",
+          "Tableros seccionales",
+          "Ingeniería de detalle y documentación técnica",
+          "Ensayos y pruebas",
+          "Especificaciones de montaje e infraestructura",
+          "Conclusión"
+        ],
+        "reglas": [
+          "Los datos garantizados forman parte de esta salida; no crear un módulo independiente con columnas inventadas.",
+          "No atribuir al proyecto activo las especificaciones de otra obra.",
+          "No afirmar cumplimiento normativo, ensayos realizados ni garantías verificadas.",
+          "Usar contenido breve de demostración y campos pendientes donde corresponda.",
+          "La descarga es únicamente una interacción simulada."
+        ]
+      }
+    },
+    "base_conocimiento": {
+      "tipo": "ABM visual completo.",
+      "secciones": [
+        "Materiales y características técnicas",
+        "Marcas y proveedores",
+        "Precios de referencia",
+        "Equivalencias",
+        "Mano de obra y tiempos estándar",
+        "Logística y vehículos",
+        "Equipos y alquileres",
+        "Administración, ingeniería y puesta en marcha",
+        "Proyectos históricos",
+        "Normas y reglas",
+        "Plantillas de documentos",
+        "Contenido técnico para memorias",
+        "Historial de modificaciones"
+      ],
+      "patron_comun": [
+        "Tabla con búsqueda y filtros.",
+        "Ver detalle.",
+        "Nuevo registro.",
+        "Editar.",
+        "Eliminar con confirmación.",
+        "Importar y exportar de forma simulada.",
+        "Formulario con validaciones visuales.",
+        "Feedback de acción simulada.",
+        "Historial representativo."
+      ],
+      "materiales": {
+        "campos": [
+          "Código interno",
+          "Referencia comercial",
+          "Descripción",
+          "Marca",
+          "Unidad",
+          "Características técnicas",
+          "Dimensiones",
+          "Clasificación",
+          "Documentos e imágenes",
+          "Fuente",
+          "Fecha de actualización"
+        ],
+        "reglas": [
+          "Organizar las fichas para admitir datos técnicos y documentación de fabricantes.",
+          "No implementar conexión con Schneider Electric ni solicitar credenciales.",
+          "No presentar una marca como proveedor comercial cuando esa relación no esté definida.",
+          "No inventar especificaciones de referencias comerciales."
+        ]
+      },
+      "plantillas": {
+        "campos": [
+          "Nombre",
+          "Logo",
+          "Título",
+          "Encabezado",
+          "Pie",
+          "Secciones incluidas",
+          "Orden de secciones"
+        ],
+        "regla": "La configuración visual de la plantilla es determinista y no requiere IA."
+      },
+      "proyectos_historicos": {
+        "contenido": [
+          "Sugerencias de proyectos similares.",
+          "Motivo de similitud.",
+          "Información disponible para consultar.",
+          "Aceptar sugerencia.",
+          "Comentario opcional."
+        ],
+        "reglas": [
+          "Son sugerencias, no reutilización automática.",
+          "Aceptar no sobrescribe el itemizado.",
+          "Representar la aceptación y el comentario en logs.",
+          "No inventar porcentajes de similitud calculados."
+        ]
+      }
+    }
+  },
+  "datos_iniciales": {
+    "procedencia": "Ejemplos tomados del Excel de referencia. No son materiales extraídos del pliego activo.",
+    "intervenciones_referencia": [
+      "1.1 - INTERVENCIÓN EN TABLERO SECCIONAL NORTE EXISTENTE",
+      "1.2 - PROVISIÓN E INSTALACIÓN DE TABLERO SECCIONAL DE ILUMINACIÓN EXTERIOR",
+      "1.3 - TENDIDO DE CONDUCTORES Y CANALIZACIONES SUBTERRÁNEAS",
+      "1.4 - CANALIZACIONES EN SECTOR DE ESTACIONAMIENTO",
+      "1.5 - CANALIZACIONES EN SECTOR INGRESO"
+    ],
+    "materiales": [
+      {
+        "intervencion": "1.1",
+        "item": 1,
+        "cantidad": 1,
+        "unidad": "UDS",
+        "descripcion": "CAJA EMB P/TERMOMAG 20(24) MOD C/PUERTA FUME 344X272X61mm BOMBE - 45000074",
+        "codigo": "-",
+        "marca": "CONEXTUBE",
+        "valor_unitario": 10.641006921122566,
+        "importe": 10.641006921122566
+      },
+      {
+        "intervencion": "1.1",
+        "item": 2,
+        "cantidad": 1,
+        "unidad": "UDS",
+        "descripcion": "INT. TERMOMAG. EASY9 4X25A 4,5KA C",
+        "codigo": "EZ9F34425",
+        "marca": "SCHNEIDER",
+        "valor_unitario": 19.87,
+        "importe": 19.87
+      },
+      {
+        "intervencion": "1.1",
+        "item": 3,
+        "cantidad": 10,
+        "unidad": "MTS",
+        "descripcion": "CABLE CU/PVC FLEX 1X 6MM2 NEGRO",
+        "codigo": "1011",
+        "marca": "FONSECA",
+        "valor_unitario": 1.1184767689746811,
+        "importe": 11.18476768974681
+      },
+      {
+        "intervencion": "1.2",
+        "item": 1,
+        "cantidad": 1,
+        "unidad": "UDS",
+        "descripcion": "Gabinete estanco F60 IP65 450X450X150",
+        "codigo": "E454515",
+        "marca": "FORLI",
+        "valor_unitario": 59.275194346289759,
+        "importe": 59.275194346289759
+      },
+      {
+        "intervencion": "1.2",
+        "item": 3,
+        "cantidad": 1,
+        "unidad": "UDS",
+        "descripcion": "INT. DIFERENCIAL EASY9 4X25A 30MA AC",
+        "codigo": "EZ9R36425",
+        "marca": "SCHNEIDER",
+        "valor_unitario": 56.39,
+        "importe": 56.39
+      },
+      {
+        "intervencion": "1.2",
+        "item": 4,
+        "cantidad": 1,
+        "unidad": "UDS",
+        "descripcion": "CONT. 25A 3P 220VCA 50/60HZ AUX NC",
+        "codigo": "LC1E2501M7",
+        "marca": "SCHNEIDER",
+        "valor_unitario": 35.14,
+        "importe": 35.14
+      },
+      {
+        "intervencion": "1.2",
+        "item": 5,
+        "cantidad": 2,
+        "unidad": "UDS",
+        "descripcion": "INT. TERMOMAG. EASY9 2X10A 4,5KA C",
+        "codigo": "EZ9F34210",
+        "marca": "SCHNEIDER",
+        "valor_unitario": 9.08,
+        "importe": 18.16
+      },
+      {
+        "intervencion": "1.3",
+        "item": 1,
+        "cantidad": 80,
+        "unidad": "MTS",
+        "descripcion": "CABLE SUBT CU 4X 4MM2",
+        "codigo": "-",
+        "marca": "-",
+        "valor_unitario": 3.1980842799988318,
+        "importe": 255.84674239990653
+      },
+      {
+        "intervencion": "1.3",
+        "item": 3,
+        "cantidad": 200,
+        "unidad": "MTS",
+        "descripcion": "CABLE SUBT CU 3X 2.5MM2",
+        "codigo": "-",
+        "marca": "-",
+        "valor_unitario": 1.6447741144175452,
+        "importe": 328.95482288350905
+      },
+      {
+        "intervencion": "1.4",
+        "item": 1,
+        "cantidad": 30,
+        "unidad": "MTS",
+        "descripcion": "KSRV100L CAÑO FE LIVIANO GALV CALIENTE RIG 1 PULGADA X MT",
+        "codigo": "KSRV 100 L",
+        "marca": "MICROCONTROL",
+        "valor_unitario": 2.835031977338434,
+        "importe": 85.050959320153027
+      }
+    ],
+    "parametros_referencia": {
+      "dolar": 1415,
+      "cuadrilla_personas": 4,
+      "dias_obra": 8,
+      "horas_diarias": 9,
+      "valor_hora_oficial_referencia": 4443,
+      "combustible": 1720,
+      "sueldo_administrativo": 1500000,
+      "asignacion_administracion": 0.05,
+      "sueldo_profesional": 1500000,
+      "asignacion_profesional": 0.4
+    },
+    "reglas": [
+      "Mostrar números con formato es-AR.",
+      "No presentar precios como vigentes.",
+      "No inventar la moneda de un valor cuando no esté identificada.",
+      "El conjunto de materiales incluido es una muestra, no el Excel completo.",
+      "No mostrar el total del archivo completo como si correspondiera a esta muestra.",
+      "Si están disponibles los adjuntos al implementar, ampliar las filas y respetar todos sus campos.",
+      "Los registros sintéticos necesarios para estados, alertas e historial deben identificarse como ejemplos de demostración."
+    ]
+  },
+  "recorrido_demo": [
+    "Abrir la lista de proyectos.",
+    "Ingresar al proyecto precargado.",
+    "Crear un procesamiento.",
+    "Seleccionar el PDF o usar el documento de demostración.",
+    "Indicar varios rangos de páginas.",
+    "Identificar secciones.",
+    "Excluir una sección y confirmar el alcance.",
+    "Mostrar análisis simulado breve.",
+    "Revisar pestañas y navegar a páginas desde las alertas.",
+    "Confirmar, corregir y descartar alertas.",
+    "Generar visualmente el itemizado.",
+    "Recorrer materiales, mano de obra, resumen, potencia y descripciones.",
+    "Abrir formularios de edición y mostrar un escenario de modificación.",
+    "Simular exportación e importación de Excel.",
+    "Consultar historial, deshacer importación y restablecer el itemizado inicial.",
+    "Seleccionar plantilla de memoria.",
+    "Mostrar faltantes, búsqueda web simulada y acceso al ABM.",
+    "Continuar con faltantes y mostrar la memoria de solo lectura.",
+    "Simular descarga Word.",
+    "Volver al proyecto y crear una ejecución independiente.",
+    "Recorrer los ABM de la base de conocimiento.",
+    "Reiniciar la demo."
+  ],
+  "reinicio": {
+    "accion": "Pedir confirmación y restaurar el estado inicial.",
+    "eliminar": [
+      "Archivos seleccionados durante la sesión",
+      "Procesamientos de la sesión",
+      "Progreso visual",
+      "Escenarios de cambios",
+      "Comentarios de la sesión",
+      "Logs de la sesión"
+    ],
+    "conservar": [
+      "Proyecto precargado",
+      "Datos de referencia iniciales",
+      "Fixtures necesarios para volver a realizar la demostración"
+    ]
+  },
+  "criterios_aceptacion": [
+    "La aplicación inicia sin autenticación.",
+    "Existe un único proyecto accesible.",
+    "El botón Enviar a Ingeniería aparece solamente en la lista de proyectos y no tiene requisitos.",
+    "Se pueden seleccionar múltiples rangos y excluir secciones.",
+    "La revisión de secciones precede a las detecciones.",
+    "No se presenta contenido fuera del alcance como procesado.",
+    "Todas las alertas deben resolverse antes del primer itemizado.",
+    "Descartar no incorpora ni modifica ítems.",
+    "Ir a página cambia la página del visor simulado.",
+    "No se resalta el PDF.",
+    "El itemizado representa la estructura del Excel, no solamente materiales.",
+    "Las modificaciones del itemizado no alteran detecciones.",
+    "La importación representa reemplazo, trazabilidad y posibilidad de deshacer.",
+    "Existe una acción para restablecer el itemizado inicial.",
+    "La memoria es la última etapa y admite continuar con faltantes.",
+    "La vista previa de memoria no es editable.",
+    "Los ABM tienen pantallas de consulta, alta, edición y eliminación simuladas.",
+    "Los proyectos similares se muestran como sugerencias aceptables y comentables.",
+    "No hay procesamiento, integraciones ni archivos de salida reales.",
+    "Los procesamientos mantienen independencia visual.",
+    "Reiniciar restaura completamente la demo.",
+    "No hay botones principales sin feedback, salvo el botón visual de Ingeniería.",
+    "El proyecto compila y puede ejecutarse con Vite."
+  ]
+}
